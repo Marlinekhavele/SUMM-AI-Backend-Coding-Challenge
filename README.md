@@ -78,4 +78,4 @@ Django API for text translation, handling both HTML and plain text inputs. It us
     docker-compose exec web python manage.py migrate
     ```
 
-biggest challenge translation api  confusing with django localisation
+biggest challenge translation api everything requires billing
