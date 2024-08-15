@@ -64,6 +64,7 @@ Django API for text translation, handling both HTML and plain text inputs. It us
     ```bash
     python manage.py runserver
     ```
+    
 8. **Run tests**
   ```bash
     python manage.py test translation_api
