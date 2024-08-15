@@ -8,7 +8,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 import openai
 from django.conf import settings
-
+import logging
+logger = logging.getLogger(__name__)
 
 openai.api_key = settings.OPENAI_API_KEY
 
@@ -55,20 +56,21 @@ class TranslationViewSet(viewsets.ModelViewSet):
 
     def translate_text(self, text, target_language):
         """
-        Translate the given text to the target language using GPT-3.
+        Translate the given text to the target language using GPT4.
         """
         try:
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": f"You are a translator. Translate the following text to {target_language}."},
-                    {"role": "user", "content": text}
-                ]
-            )
-            return response.choices[0].message['content'].strip()
+            response = openai.chat.completions.create(
+            model="gpt-3.5-turbo",
+              messages=[
+                {"role": "system", "content": f"Translate the following text to {target_language}. Only provide the translation."},
+                {"role": "user", "content": text}
+            ])
+            translated_text = response.choices[0].message['content'].strip()
+            logger.info(f"Received translation: '{translated_text}'")
+            return translated_text
         except Exception as e:
-            print(f"Translation error: {str(e)}")
-            return text
+            logger.error(f"Translation error: {str(e)}")
+        return text  # Return original text if translation fails
 
     def translate_html(self, html, target_language):
         """
