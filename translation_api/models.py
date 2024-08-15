@@ -6,6 +6,7 @@ class Translation(models.Model):
     original_text = models.TextField()
     translated_text = models.TextField()
     content_type = models.CharField(max_length=20)  # 'html' or 'plain'
+    target_language = models.CharField(max_length=50, default='English')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
