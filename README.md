@@ -1,5 +1,5 @@
 # Translation API 
-Django API for text translation, handling both HTML and plain text inputs. It uses Django Rest Framework (DRF) for API functionality and BeautifulSoup for HTML parsing. The API integrates with a third-party translation service and associates translations with specific users.
+Django API for text translation, handling both HTML and plain text inputs. It uses Django Rest Framework (DRF) for API functionality and BeautifulSoup for HTML parsing. The API integrates with a third-party chatGPT translation service and associates translations with specific users.
 
 ## Features
 - Django 3.2+
@@ -41,7 +41,7 @@ Django API for text translation, handling both HTML and plain text inputs. It us
 4. **Create a `.env` file**
 
     ```bash
-    cp .env.example .env
+    cp .env.example
     ```
 
     Edit the `.env` file with your configuration settings.
@@ -49,6 +49,7 @@ Django API for text translation, handling both HTML and plain text inputs. It us
 5. **Run migrations**
 
     ```bash
+    python manage.py makemigration
     python manage.py migrate
     ```
 
@@ -62,6 +63,10 @@ Django API for text translation, handling both HTML and plain text inputs. It us
 
     ```bash
     python manage.py runserver
+    ```
+8. **Run tests**
+  ```bash
+    python manage.py test translation_api
     ```
 
 ### Docker Setup
@@ -78,4 +83,5 @@ Django API for text translation, handling both HTML and plain text inputs. It us
     docker-compose exec web python manage.py migrate
     ```
 
-biggest challenge translation api everything requires billing
+- biggest challenge translation api everything requires billing so stressful
+- worked with chatgpt it is better when an API key is given 
